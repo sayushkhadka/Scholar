@@ -1,0 +1,140 @@
+{% extends 'account/base_register.html' %}
+{% load static %}
+
+{% block title %}
+Teacher Update Form
+{% endblock %}
+
+
+{% block content%}
+
+<!-- <div class="right-register"> -->
+<div class="pcoded-main-container">
+    <h4><b><a class="scholar-register" href="{% url 'main:index' %}">Scholar</a></b></h4>
+    <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <form method="POST" action="{% url 'main:teacher-update' teacher_update.pk %}" id="levelSectionForm"
+            level-section-url="{% url 'account:load-section' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="register-card">
+                        <!-- <div class="card-header">
+                                            <h4><b>Scholar</b></h4>
+                                        </div> -->
+                        <div class="card-body">
+                            <h5><b>Teacher Update</b></h5>
+                            <hr>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">First Name</label> -->
+                                        <!-- <input type="text" class="form-control"  placeholder="First Name"> -->
+                                        {{ form.first_name }}
+                                        <div class="text-danger">{{ form.firstName.errors }}</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">Last Name</label> -->
+                                        <!-- <input type="text" class="form-control"  placeholder="Last Name"> -->
+                                        {{ form.last_name}}
+                                        <div class="text-danger">{{ form.last_name.errors }}</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">Email</label> -->
+                                        <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"> -->
+                                        {{ form.email }}
+                                        <div class="text-danger">{{ form.email.errors }}</div>
+
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                    </div>
+
+                                   
+
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>Role</label>
+                                        {{ form.role }}
+
+                                        <!-- <div class="text-danger">{{ form.role.errors }}</div> -->
+                                    </div>
+
+
+                                    <!-- <div class="form-group">
+                                                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        </div> -->
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                            <p class="mb-0 text-muted" style="text-align: center;">Go back to your portal: <b><a
+                                        style="color:black;" href="{% url 'main:teacher-page' %}">Portal</a></b></p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!-- <div class="left-register"> 
+        
+        <h4><b>Scholar</b></h4>
+        <div class="login-image">
+            <img src="{% static 'images/logo.png' %}" class="login-image-size"  alt="Logo">
+        </div>
+         
+    </div> -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_level").change(function () {
+        const url = $("#levelSectionForm").attr("level-section-url");  // get the url of the `load_level_section` view
+        const levelId = $(this).val();  // get the selected level ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /account/load-section/ )
+            data: {
+                'level_id': levelId       // add the level id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_level_section` view function
+                $("#id_levelSection").html(data);  // replace the contents of the section input with the data that came from the server
+                /*
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (section) {
+                    html_data += `<option value="${section.id}">${levelSection.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_section").html(html_data);
+                */
+            }
+        });
+
+    });
+</script>
+
+
+
+
+{% endblock %}

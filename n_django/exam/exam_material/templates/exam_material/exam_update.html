@@ -1,0 +1,155 @@
+{% extends 'account/base_register.html' %}
+{% load static %}
+
+{% block title %}
+Exam Update Form
+{% endblock %}
+
+
+{% block content%}
+
+<!-- <div class="right-register"> -->
+<div class="pcoded-main-container">
+    <h4><b><a class="scholar-register" href="{% url 'main:index' %}">Scholar</a></b></h4>
+    <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <form method="POST" action="{% url 'exam_material:exam-update' exam_update.pk %}" id="levelSectionForm"
+            level-section-url="{% url 'account:load-section' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="register-card">
+                        <!-- <div class="card-header">
+                                            <h4><b>Scholar</b></h4>
+                                        </div> -->
+                        <div class="card-body">
+                            <h5><b>Exam Update</b></h5>
+                            <hr>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="form-group" id="exampleFormControlSelect1">
+
+                                        <label for="exampleFormControlSelect1">Class</label>
+                                        {{ form.level }}
+                                        <div class="text-danger">{{ form.level.errors }}</div>
+
+                                    </div>
+
+                                    <div class="form-group" id="exampleFormControlSelect1">
+
+                                        <label for="exampleFormControlSelect1">Section</label>
+                                        {{ form.levelSection }}
+
+                                        <div class="text-danger">{{ form.levelSection.errors }}</div>
+
+                                    </div>
+
+                                    <div class="form-group" id="exampleFormControlSelect1">
+
+                                        <label for="exampleFormControlSelect1">Subject</label>
+                                        {{ form.subject }}
+                                        <div class="text-danger">{{ form.subject.errors }}</div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        {{ form.title }}
+
+                                        <div class="text-danger">{{ form.title.errors }}</div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        {{ form.numberOfQuestions }}
+
+                                        <div class="text-danger">{{ form.numberOfQuestions.errors }}</div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        {{ form.time }}
+
+                                        <div class="text-danger">{{ form.time.errors }}</div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        {{ form.scoreToPass }}
+
+                                        <div class="text-danger">{{ form.scoreToPass.errors }}</div>
+
+                                    </div>
+
+
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <p class="mb-0 text-muted" style="text-align: center;">Get back to exam list: <b><a
+                                style="color:black;" href="{% url 'exam_material:exam-list' %}">Exam List</a></b></p>
+
+                            <p class="mb-0 text-muted" style="text-align: center;">Get back to staff page: <b><a
+                                style="color:black;" href="{% url 'main:staff-page' %}">Staff Page</a></b></p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!-- <div class="left-register"> 
+        
+        <h4><b>Scholar</b></h4>
+        <div class="login-image">
+            <img src="{% static 'images/logo.png' %}" class="login-image-size"  alt="Logo">
+        </div>
+         
+    </div> -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_level").change(function () {
+        const url = $("#levelSectionForm").attr("level-section-url");  // get the url of the `load_level_section` view
+        const levelId = $(this).val();  // get the selected level ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /account/load-section/ )
+            data: {
+                'level_id': levelId       // add the level id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_level_section` view function
+                $("#id_levelSection").html(data);  // replace the contents of the section input with the data that came from the server
+                /*
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (section) {
+                    html_data += `<option value="${section.id}">${levelSection.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_section").html(html_data);
+                */
+            }
+        });
+
+    });
+</script>
+
+
+
+
+{% endblock %}

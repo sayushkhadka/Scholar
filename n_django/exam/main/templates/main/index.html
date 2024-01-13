@@ -1,0 +1,312 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Scholar</title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description"
+        content="Free Datta Able Admin Template come up with latest Bootstrap 4 framework with basic components, form elements and lots of pre-made layout options" />
+    <meta name="keywords"
+        content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template" />
+    <meta name="author" content="CodedThemes" />
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+            background-color: #272C60;
+        }
+
+        .index-body {
+            height: 100vh;
+            width: 100%;
+        }
+
+        label.index-logo {
+            color: white;
+            font-size: 20px;
+            line-height: 45px;
+            margin: 20px;
+            font-weight: bold;
+
+        }
+
+        .index-logo-a {
+            color: white;
+        }
+
+        .index-logo-a:hover {
+            color: #434675;
+            transition: 0.3s ease;
+        }
+
+
+        nav {
+            height: 120px;
+            width: 100%;
+            padding: 20px 20px;
+        }
+
+        nav ul {
+            float: right;
+            margin-right: 100px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            line-height: 70px;
+            margin: 0 5px;
+        }
+
+        nav ul li a {
+            font-family: "Open Sans", sans-serif;
+            color: white;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        .checkbtn {
+            font-size: 30px;
+            color: white;
+            float: right;
+            line-height: 80px;
+            margin-right: 50px;
+            cursor: pointer;
+            display: none;
+
+        }
+
+        .checkbtn:hover {
+            color: #434675;
+            transition: 0.3s ease;
+        }
+
+        /* removes check sign */
+        #check {
+            display: none;
+        }
+
+        @media(max-width: 952px) {
+            label.index-logo {
+                font-size: 30px;
+                padding-left: 50px;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+
+            .index-text {
+                display: none;
+            }
+
+            .index-footer {
+                height: auto;
+            }
+
+            /* .index-image-body{
+                display: none;
+            } */
+        }
+
+        @media (max-width: 858px) {
+            .checkbtn {
+                display: block;
+            }
+
+
+            ul {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+            }
+
+            /* .index-image-body{
+                display: none;
+            } */
+
+            nav ul li {
+                display: block;
+                font-size: 20px;
+            }
+
+            nav ul li a {
+                font-size: 20px;
+            }
+
+            #check:checked~ul {
+                left: 0;
+            }
+
+            .index-text {
+                display: none;
+            }
+
+            .index-footer {
+                height: auto;
+            }
+        }
+
+        .index-image-body {
+            padding: 40px;
+            display: flex;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            justify-content: center;
+            height: 66vh;
+        }
+
+        .index-image {
+            width: 500px;
+            height: 45vh;
+        }
+
+        .index-text {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px 10px;
+            padding-top: 30px;
+            height: 15vh;
+        }
+
+        .index-choice {
+            color: black;
+            transition: 0.2s ease;
+            background-color: white;
+            height: 32px;
+            border: 1px solid white;
+            padding: 5px 10px;
+            min-width: 12px;
+            outline: none;
+            cursor: pointer;
+            line-height: 10px;
+            box-sizing: border-box;
+            font-weight: 600;
+            font-size: 13px;
+            border-radius: 7px;
+        }
+
+        .index-choice:hover {
+            background-color: #434675;
+            border-color: #434675;
+            color: white;
+        }
+
+        .index-footer {
+            background-color: #f0f2f5;
+            color: black;
+            height: auto;
+            padding: 20px;
+            bottom: 0%;
+            width: 100%;
+            font-weight: 300;
+        }
+
+        .footer-content {
+            background-color: #f0f2f5;
+            line-height: auto;
+            color: #272C60;
+            font-size: 20px;
+            font-weight: bold;
+
+        }
+
+        .footer-contact {
+            background-color: #f0f2f5;
+            text-align: center;
+        }
+
+        .login-image-size-index {
+            width: 100px;
+            height: 100px;
+        }
+
+        .copyright-footer {
+            background-color: #f0f2f5;
+            text-align: center;
+        }
+    </style>
+    {% include 'common/style.html' %}
+
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+
+</head>
+
+
+<body class="index-body">
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn"> <!-- The for attribute of the <label> is set to the same ID value as the associated input field.-->
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="index-logo"><a class="index-logo-a" href="{% url 'main:index' %}">Scholar</label>
+        <ul>
+
+            <li><a class="index-choice" href="{% url 'account:student-login' %}"> Student </a></li>
+
+
+
+            <li><a class="index-choice" href="{% url 'account:teacher-login' %}"> Teacher </a></li>
+
+
+            <li><a class="index-choice" href="{% url 'account:staff-login' %}"> Staff </a></li>
+
+        </ul>
+
+    </nav>
+
+    <div class="index-text">
+        <h4 style="color: white">Eradicating traditional approach of examination</h4>
+
+    </div>
+
+    <div class="index-image-body">
+        <img class="index-image" src="{% static 'images/index.png' %}" alt="Index Image">
+    </div>
+
+    <!-- This is where the footer begins -->
+    <footer class="index-footer">
+        <p class="footer-content">
+            Scholar
+        </p>
+
+
+
+        <p class="footer-contact">
+            Contact: 9888262366 &nbsp; Email: scholarnewscholar@gmail.com &nbsp; <br>
+            <a style="font-weight: 600;" href="{% url 'main:index' %}"> About Scholar </a> &emsp;
+            <a style="font-weight: 600;" href="{% url 'account:student-login' %}"> Student </a> &emsp; <a
+                style="font-weight: 600;" href="{% url 'account:teacher-login' %}"> Teacher </a> &emsp; <a
+                style="font-weight: 600;" href="{% url 'account:staff-login' %}"> Staff </a>
+
+        </p>
+
+        <hr>
+
+        <p class="copyright-footer">Copyright © 2023 Scholar. All Rights Reserved.</p>
+
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!-- question_create_or_update.html -->
+
+{% extends "account/base_register.html" %}
+
+{% block title %}
+Set Question
+{% endblock %}
+
+{% block content %}
+<form enctype="multipart/form-data" class="container" method="post" id="question_form">
+    {% csrf_token %}
+    <!-- main form start --- in our case question form -->
+    <div class="card" style="width: 80%; margin-left: 10%;">
+        <div class="card-header card-header-secondary" style="background-color: #272C60;">
+            <h4 class="card-title" style="color: white;"><b>Add Questions</b></h4>
+            <li class="breadcrumb-item" style="list-style-type: none;"><a href="{% url 'main:teacher-page' %}"><i
+                        class="feather icon-home"></i>Return to your portal</a></li>
+
+        </div>
+        {% for field in form %}
+        <div class="form-group card-body">
+            <label>{{field.label}}</label>
+            {% if field.field.required %}
+            <span style="color: red;" class="required">*</span>
+            {% endif %}
+
+            {{field}}
+            {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    <!-- main form end --- in our case question form -->
+
+    <!-- inline form for Images start -->
+
+    <!-- EXPLAINING with named_formsets.images as formset -->
+    <!-- Note: named_formsets is used in get_context_data function in views.py -->
+    <!-- Note: here images is our ImageFormSet name, used in get_named_formsets function in views.py -->
+    <!-- inline form for Images end -->
+
+    <!-- inline form for answer start -->
+
+    <!-- EXPLAINING with named_formsets.answers as formset -->
+    <!-- Note: named_formsets is used in get_context_data function in views.py -->
+    <!-- Note: here answers is our AnswerFormSet name, used in get_named_formsets function in views.py -->
+    <!-- inline form for Answer start -->
+
+    <!-- EXPLAINING with named_formsets.answers as formset -->
+    <!-- Note: named_formsets is used in get_context_data function in views.py -->
+    <!-- Note: here answers is our AnswerFormSet name, used in get_named_formsets function in views.py -->
+    {% with named_formsets.answers as formset %}
+    {{ formset.management_form }}
+    <script type="text/html" id="answers-template">  // id="inlineformsetname-template"
+            // id='inlineformsetname-__prefix__' 
+            <tr id="answers-__prefix__" class= hide_all>
+                {% for fields in formset.empty_form.hidden_fields %}
+                    {{ fields }}
+                {% endfor %}
+            
+                {% for fields in formset.empty_form.visible_fields %}
+                    <td>{{fields}}</td>
+                {% endfor %}
+            </tr>
+        </script>
+    <div class="table-responsive card mt-4" style="width: 80%; margin-left: 10%;">
+        <div class="card-header card-header-secondary" style="background-color: #272C60;">
+            <h4 class="card-title" style="color: white;"><b>Add Answers</b></h4>
+        </div>
+        <table class="table card-header">
+            <thead class="text-secondary">
+                <th>Answer <span style="color: red;" class="required">*</span></th>
+                <th>Correct(Write true for the correct answer) <span style="color: red;" class="required">*</span></th>
+                <th>Delete?</th>
+                
+            </thead>
+            <tbody id="item-answers"> <!-- id="item-inlineformsetname" -->
+                <!-- formset non forms errors -->
+                {% for error in formset.non_form_errors %}
+                <span style="color: red">{{ error }}</span>
+                {% endfor %}
+                {% for formss in formset %}
+                {{ formss.management_form }}
+                <tr id="answers-{{ forloop.counter0 }}" class=hide_all> <!-- id="inlineformsetname-counter" -->
+                    {{ formss.id }}
+                    {% for field in formss.visible_fields %}
+                    <td>
+                        {{field}}
+                        {% for error in field.errors %}
+                        <span style="color: red">{{ error }}</span>
+                        {% endfor %}
+
+                        {% comment %} {{ field.DELETE }} {% endcomment %}
+                    </td>
+                    {% endfor %}
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="#" id="add-answer-button" class="btn btn-secondary add-answers" style="width: 35%;">Add answers</a>
+        <!-- id="add-inlineformsetname-button" -->
+    </div>
+
+    {% endwith %}
+    <!-- inline form for Images end -->
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" style="width: 25%; margin-left: 10%;">Submit</button>
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+
+<script>
+
+    $(document).ready(function () {
+        // when user clicks add more btn of answers
+        $('.add-answers').click(function (ev) {
+            ev.preventDefault();
+            var count = $('#item-answers').children().length;
+            var tmplMarkup = $('#answers-template').html();
+            var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+            $('#item-answers').append(compiledTmpl);
+
+            // update form count
+            $('#id_answers-TOTAL_FORMS').attr('value', count + 1);
+        });
+    });
+</script>
+
+{% endblock content %}

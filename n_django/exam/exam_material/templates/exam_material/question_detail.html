@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Question Detail ({{ question_detail }})
+{% endblock%}
+
+{% block content%}
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+                <div class="page-header">
+                    <div class="page-block">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <div class="page-header-title">
+                                    <h5 class="m-b-10">Question</h5>
+                                </div>
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'exam_material:question-list' %}"><i
+                                                class="feather icon-home"></i>Question List</a></li>
+                                    <!-- <li class="breadcrumb-item"><a href="#!">Tables</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:">Basic Tables</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ breadcrumb ] end -->
+                <!---->
+
+                <p>
+
+                <h5> Question Detail ({{ question_detail }})</h5>
+                <p>Question: {{ question_detail }}</p>
+                <p>Exam Name: {{ question_detail.exam_name}}</p>
+                <p>Subject: {{ question_detail.exam_name.subject }}</p>
+            
+
+                </p>
+
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+{% endblock%}

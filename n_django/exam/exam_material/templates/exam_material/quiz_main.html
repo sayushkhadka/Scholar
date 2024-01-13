@@ -1,0 +1,67 @@
+{% extends 'exam_material/exam_material_base.html' %}
+{% load static %}
+
+{% block title %}
+Available Exam
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/quiz_main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+
+<!-- Modal -->
+<div class="modal fade" id="quizStartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #272C60;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Begin your exam</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-confirm"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" id="start-button" class="btn btn-success">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="quiz-header">
+  <div class="h4">Available Exams</div>
+  <a href="{% url 'main:student-page' %}">Return to your portal</a>
+</div>
+
+<div class="quiz-main-body" style="color: black; text-decoration: none; background-color: white;
+      padding: 20px;
+      grid-template-columns: repeat( auto-fit, minmax(300px, 1fr));
+      display: grid;
+      grid-column-gap: 1rem;">
+
+
+  {% for obj in object_list %}
+
+
+  <button class="card yearly-sales modal-button btn btn-link" data-pk="{{obj.pk}}" data-subject="{{obj.subject}}"
+    data-quiz="{{obj.title}}" data-questions="{{obj.numberOfQuestions}}" data-time="{{obj.time}}"
+    data-pass="{{obj.scoreToPass}}" data-toggle="modal" data-target="#quizStartModal"
+    style="background-color: #272C60; color: white; text-decoration: none;">
+
+    <div class="card-block">
+
+      {{ forloop.counter }}
+      .
+      {{obj.title}}
+
+      <br>
+    </div>
+  </button>
+
+  {% endfor %}
+
+</div>
+
+{% endblock %}

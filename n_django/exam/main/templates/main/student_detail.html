@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Student Detail ({{ student_detail }})
+{% endblock%}
+
+{% block content%}
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+                <div class="page-header">
+                    <div class="page-block">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <div class="page-header-title">
+                                    <h5 class="m-b-10">Student</h5>
+                                </div>
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'main:student-list'%}"><i
+                                                class="feather icon-home"></i>Student List</a></li>
+                                    <!-- <li class="breadcrumb-item"><a href="#!">Tables</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:">Basic Tables</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ breadcrumb ] end -->
+                <!---->
+
+                <p>
+
+                <h5> Student Detail ({{ student_detail }})</h5>
+                <p>Username: {{ student_detail }}</p>
+                <p>First Name: {{ student_detail.user.first_name }}</p>
+                <p>Last Name: {{ student_detail.user.last_name }}</p>
+                <p>Email: {{ student_detail.user.email }}</p>
+                <p>Class: {{ student_detail.student_level }}</p>
+                <p>Section: {{ student_detail.student_section }}</p>
+                <p>Subjects:
+                    {% for subject in student_detail.student_subject.all %}
+                <p>{{ forloop.counter}}. {{ subject }} </p>
+                {% endfor %}
+                </p>
+                </p>
+
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+{% endblock%}

@@ -1,0 +1,54 @@
+{% extends 'exam_material/exam_material_base.html' %}
+{% load static %}
+
+{% block title %}
+Exam
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/quiz.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+
+
+
+<div class="quiz">
+  <div class="quiz-header">
+    <div class="row">
+      <div class="col">
+        <b>Subject: {{ obj.subject}}</b>
+        <br>
+        <b>Exam title: {{ obj.title }}</b>
+        <br>
+        Number of Questions: {{obj.numberOfQuestions}}
+        <p>Score to pass: {{obj.scoreToPass}}%</p>
+        <a href="{% url 'exam_material:quiz-main' %}">Return to available exams</a>
+      </div>
+
+      <div class="col text-right" id="timer-box"> </div>
+
+    </div>
+  </div>
+
+
+
+
+  <div class="quiz-main-body" style="color: black; padding: 20px;">
+
+    <form id="quiz-form" class="mt-3 mb-3" action="">
+      {% csrf_token %}
+
+      <div id="quiz-box"></div>
+
+      <div class="card-body">
+        <button type="submit" class="btn btn-primary" style="width: 25%;"> Submit your paper </button>
+      </div>
+
+
+    </form>
+    <div id="score-box"></div>
+    <div id="result-box"></div>
+  </div>
+</div>
+{% endblock %}

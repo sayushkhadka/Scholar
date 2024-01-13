@@ -1,0 +1,191 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Student Page
+{% endblock %}
+
+{% block content %}
+<!-- [ Pre-loader ] start -->
+<!-- <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div> -->
+<!-- [ Pre-loader ] End -->
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar">
+    <div class="navbar-wrapper">
+        <div class="navbar-brand header-logo">
+            <a href="{% url 'main:index' %}" class="b-brand">
+                <!-- <div class="b-bg">
+                        <i class="feather icon-trending-up"></i>
+                    </div> -->
+                <span class="b-title">Scholar</span>
+            </a>
+
+        </div>
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <li class="nav-item pcoded-menu-caption">
+                    <label style="text-transform: none;">Username: {{ user.username }}</label>
+                </li>
+
+                <li data-username="Table bootstrap datatable footable" class="nav-item">
+                    <a href="{% url 'main:student-page' %}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-home"></i></span><span class="pcoded-mtext">Student Main</span></a>
+                </li>
+
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Authorities</label>
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                    <a href="{% url 'exam_material:quiz-main' %}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-server"></i></span><span class="pcoded-mtext">Available
+                            exams</span></a>
+                </li>
+                </li>
+
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Notice Board</label>
+                </li>
+
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item active"><a href="{% url 'main:student-notice-board' %}" class="nav-link "><span
+                            class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">View
+                            Notice</span></a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->
+
+<!-- [ Header ] start -->
+<header class="navbar pcoded-header navbar-expand-lg navbar-light">
+    <div class="m-header">
+        <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
+        <a href="{% url 'main:index' %}" class="b-brand">
+            <!-- <div class="b-bg">
+                       <i class="feather icon-trending-up"></i>
+                   </div> -->
+            <span class="b-title">Scholar</span>
+        </a>
+    </div>
+    <a class="mobile-menu" id="mobile-header" href="javascript:">
+        <i class="feather icon-more-horizontal"></i>
+    </a>
+
+</header>
+<!-- [ Header ] end -->
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ Main Content ] start -->
+                        <div class="row">
+
+                            {%for forum in forums %}
+
+                            <div class="card box container">
+                                <br>
+                                <h5 class="card-title">
+
+                                    <h3>{{forum.topic}}</h3>
+
+                                    <div class="card-body container">
+                                        <p>{{forum.description}}</p>
+                                    </div>
+                                </h5>
+                                <hr>
+                                <p> By: {{forum.name}}</p>
+                                Email: {{forum.email}}
+                                <hr>
+                                <h4>Comments from students</h4>
+                                {%for discuss in discussions%}
+                                {%for objs in discuss%}
+                                {% if objs.forum == forum %}
+                                {{ forloop.counter }}: {{objs.discuss}}
+
+                                <br>
+                                {% endif %}
+                                {%endfor%}
+                                {%endfor%}
+                                <form method="POST" action="{% url 'main:comment-notice' %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-success"
+                                        style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+                                </form>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+
+                    <br>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Warning Section Starts -->
+<!-- Older IE warning message -->
+<!--[if lt IE 11]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade
+               <br/>to any of the following web browsers to access this website.
+            </p>
+            <div class="iew-container">
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="assets/images/browser/chrome.png" alt="Chrome">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="assets/images/browser/firefox.png" alt="Firefox">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="assets/images/browser/opera.png" alt="Opera">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="assets/images/browser/safari.png" alt="Safari">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="assets/images/browser/ie.png" alt="">
+                            <div>IE (11 & above)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+    <![endif]-->
+<!-- Warning Section Ends -->
+
+<!-- Required Js -->
+{% endblock %}
