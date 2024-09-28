@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description"
+    content="Free Datta Able Admin Template come up with latest Bootstrap 4 framework with basic components, form elements and lots of pre-made layout options" />
+  <meta name="keywords"
+    content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template" />
+  <meta name="author" content="CodedThemes" />
+
+  {% include 'common/style.html' %}
+  <style>
+    body {
+      background-color: #E9EBEE;
+    }
+
+    .pcoded-content {
+      position: relative;
+      display: block;
+      padding: 30px;
+    }
+
+    .pcoded-main-container {
+      position: relative;
+      width: 50%;
+      margin: 0 auto;
+      margin-top: 3.5%;
+      display: block;
+      clear: both;
+      float: unset;
+      right: 0;
+      /* margin-left: 20%; */
+      overflow: hidden;
+      min-height: 100vh;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-primary {
+      color: #fbfcf8;
+      background-color: #272C60;
+      border-color: #272C60;
+      width: 100%;
+      font-weight: bold;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+</head>
+
+
+<body>
+  {% include 'common/messages.html' %}
+  {% block content %}
+
+
+  {% endblock %}
+  {% include 'common/script.html' %}
+
+
+  <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</body>
+
+</html>

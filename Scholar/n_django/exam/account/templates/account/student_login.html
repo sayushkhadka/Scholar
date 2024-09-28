@@ -1,0 +1,70 @@
+{% extends 'account/base_login.html' %}
+{% load static %}
+
+{% block title %}
+Student Login
+{% endblock %}
+
+{% block content %}
+
+<!-- <div class="whole-page-login"> -->
+<!-- <div class="right-login"> -->
+<div class="auth-wrapper-login">
+    <h4><b><a class="scholar-login" href="{% url 'main:index' %}">Scholar</a></b></h4>
+    <img src="{% static 'images/logo.png' %}" class="login-image-size" alt="Logo">
+    <div class="auth-content">
+
+        <!-- <div class="auth-bg">
+                    <span class="r"></span>
+                    <span class="r s"></span>
+                    <span class="r s"></span>
+                    <span class="r"></span>
+                </div> -->
+
+        <div class="card">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body text-center">
+                    <p class="text-danger">{{ error }}</p>
+                    <div class="mb-4">
+                        <!-- <i class="feather icon-unlock auth-icon"></i> -->
+                    </div>
+                    <h4 class="mb-4"><b>Student Login</b></h4>
+                    <div class="input-group mb-3">
+                        {{ form.username }}
+                    </div>
+                    <div class="input-group mb-4">
+                        {{ form.password }}
+                    </div>
+                    <!-- <div class="form-group text-left">
+                            <div class="checkbox checkbox-fill d-inline">
+                                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
+                                <label for="checkbox-fill-a1" class="cr"> Save Details</label>
+                            </div>
+                        </div> -->
+
+                    {#% login button%#}
+                    <button class="btn btn-primary shadow-2 mb-4">Log In</button>
+                    <p class="mb-2 text-muted">Forgot password? <a href="{% url 'password_reset' %}">Reset</a></p>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- <div class="login-image">
+            <img src="{% static 'images/logo.png' %}" class="login-image-size"  alt="Logo">
+        </div>    -->
+
+<!-- <div class="left-login">  -->
+
+<!-- <h4><b>Scholar</b></h4> -->
+
+
+<!-- </div> -->
+<!-- </div> -->
+{% endblock %}

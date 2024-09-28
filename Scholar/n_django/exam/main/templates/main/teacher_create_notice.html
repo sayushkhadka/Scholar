@@ -1,0 +1,104 @@
+<!-- <head>
+    <style>
+        form{
+            border:4px solid black;
+            margin: 0 auto;
+            padding: 40px;
+            width: fit-content;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
+    
+</head> -->
+
+
+
+
+{% extends 'account/base_register.html' %}
+{% load static %}
+
+{% block title %}
+Teacher Create Notice
+{% endblock %}
+
+
+{% block content%}
+
+<!-- <div class="right-register"> -->
+<div class="pcoded-main-container">
+    <h4><b><a class="scholar-register" href="{% url 'main:teacher-notice-board' %}">Notices</a></p></b></h4>
+    <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <form action="{% url 'main:teacher-create-notice' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="register-card">
+                        <!-- <div class="card-header">
+                                            <h4><b>Scholar</b></h4>
+                                        </div> -->
+                        <div class="card-body">
+                            <h5><b>Add Notice</b></h5>
+                            <hr>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">First Name</label> -->
+                                        <!-- <input type="text" class="form-control"  placeholder="First Name"> -->
+                                        {{ form.name }}
+                                        <div class="text-danger">{{ form.name.errors }}</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">Last Name</label> -->
+                                        <!-- <input type="text" class="form-control"  placeholder="Last Name"> -->
+                                        {{ form.email}}
+                                        <div class="text-danger">{{ form.email.errors }}</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">Username</label> -->
+                                        <!-- <input type="text" class="form-control"  placeholder="Username"> -->
+                                        {{ form.topic}}
+                                        <div class="text-danger">{{ form.topic.errors }}</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">Email</label> -->
+                                        <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"> -->
+                                        {{ form.description }}
+                                        <div class="text-danger">{{ form.description.error }}</div>
+
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">Email</label> -->
+                                        <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"> -->
+                                        {{ form.link }}
+                                        <div class="text-danger">{{ form.link.error }}</div>
+
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Post</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <p class="mb-0 text-muted" style="text-align: center;">Go back to teacher notice board?<b><a
+                                        style="color:black;" href="{% url 'main:teacher-notice-board' %}"> Teacher
+                                        notice board</a></b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

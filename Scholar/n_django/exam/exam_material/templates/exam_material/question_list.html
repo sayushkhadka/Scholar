@@ -1,0 +1,113 @@
+
+{% extends 'main/base.html' %}
+
+{% block title %}
+Question List
+{% endblock %}
+
+{% block content %}
+
+<div class="pcoded-wrapper">
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Question List</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'main:teacher-page'%}"><i
+                                            class="feather icon-home"></i> Teacher Portal</a></li>
+                                <!-- <li class="breadcrumb-item"><a href="#!">Tables</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:">Basic Tables</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!---->
+
+
+            <!-- [ Hover-table ] start -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Question List</h3>
+
+                    </div>
+                    <ol>
+
+                    </ol>
+
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.no</th>
+                                        <th>Question</th>
+                                        <th>Exam Name</th>
+                                        <th>Subject</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in questions %}
+                                    <tr>
+
+                                        <td scope="row">{{ forloop.counter }}</td>
+
+                                        <td>
+                                            <a href="{% url 'exam_material:question-detail' item.pk %}">{{ item }}</a>
+                                        </td>
+
+                                        <td>{{ item.exam_name }}</td>
+                                        <td>{{ item.exam_name.subject }}</td>
+                                        
+                            
+                                        <td> <a href="{% url 'exam_material:question-update' item.id %}"> Update {{ item }}
+                                        </td>
+
+                                        <td>
+                                            <form method="POST" action="{% url 'exam_material:question-delete' item.pk %}">
+                                                {% csrf_token %}
+
+
+                                                <input type='submit' value='Delete'
+                                                    onclick="return confirm('Are you sure you want to delete {{ item }}?')">
+                                            </form>
+                                        </td>
+
+
+                                    </tr>
+                                    {% empty %}
+                                    <p>No records found.</p>
+                                    {% endfor %}
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Hover-table ] end -->
+
+
+        </div>
+        <!-- [ Main Content ] end -->
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

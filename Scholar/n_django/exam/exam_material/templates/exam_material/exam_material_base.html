@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description"
+        content="Free Datta Able Admin Template come up with latest Bootstrap 4 framework with basic components, form elements and lots of pre-made layout options" />
+    <meta name="keywords"
+        content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template" />
+    <meta name="author" content="CodedThemes" />
+
+    {% include 'common/style.html' %}
+
+
+    <style>
+        .not-visible {
+            display: none;
+        }
+
+        input {
+            accent-color: green;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <!-- [ Main Content ] start -->
+    {% block content %}
+
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+    {% include 'common/script.html' %}
+</body>
+
+</html>

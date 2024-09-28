@@ -1,0 +1,125 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Exam Result
+{% endblock %}
+
+{% block content %}
+
+<div class="pcoded-wrapper">
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Exam Result</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'main:teacher-page'%}"><i
+                                            class="feather icon-home"></i> Teacher Portal</a></li>
+                                <!-- <li class="breadcrumb-item"><a href="#!">Tables</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:">Basic Tables</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <!---->
+
+
+            <!-- [ Hover-table ] start -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Exam Result List</h3>
+
+                    </div>
+
+
+
+
+                    <ol>
+
+                    </ol>
+
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.no</th>
+                                        <th>Username</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Class</th>
+                                        <th>Section</th>
+                                        <th>Subject</th>
+                                        <th>Exam Title</th>
+                                        <th>Exam Name</th>
+
+                                        <th>Number of Questions</th>
+                                        <th>Date Created</th>
+                                        <th>Time (In mins)</th>
+                                        <th>Score To Pass</th>
+                                        <th>Score obtained</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in result_list_teacher %}
+                                    <tr>
+
+                                        <td scope="row">{{ forloop.counter }}</td>
+
+                                        <td>
+                                            {{ item }}
+                                        </td>
+
+                                        <td>{{ item.user.first_name }}</td>
+                                        <td>{{ item.user.last_name }}</td>
+                                        <td>{{ item.user.email }}</td>
+                                        <td>{{ item.exam_name.level }}</td>
+                                        <td>{{ item.exam_name.exam_section }}</td>
+                                        <td>{{ item.exam_name.subject }}</td>
+
+                                        <td>{{ item.exam_name.title }}</td>
+                                        <td>{{ item.exam_name }}</td>
+                                        <td>{{ item.exam_name.numberOfQuestions }}</td>
+                                        <td>{{ item.exam_name.date_created }}</td>
+                                        <td>{{ item.exam_name.time }}</td>
+                                        <td>{{ item.exam_name.scoreToPass }}</td>
+                                        <td>{{ item.score }}</td>
+
+
+                                    </tr>
+                                    {% empty %}
+                                    <p>No records found.</p>
+                                    {% endfor %}
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Hover-table ] end -->
+
+
+        </div>
+        <!-- [ Main Content ] end -->
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

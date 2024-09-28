@@ -1,0 +1,31 @@
+{% extends 'account/base_register.html' %}
+{% load static %}
+
+{% block title %}
+Notice Comment
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'main:comment-notice' %}" method="POST" style=" border: 4px solid black; margin: 0 auto; padding: 40px; width: fit-content;">
+    {% csrf_token %}
+    <div class="form-group" id="exampleFormControlSelect1">
+
+        <label for="exampleFormControlSelect1">Notice</label>
+        {{ form.forum }}
+        <div class="text-danger">{{ form.forum.errors }}</div>
+
+    </div>
+
+    <div class="form-group">
+
+        {{ form.discuss }}
+        <div class="text-danger">{{ form.discuss.errors }}</div>
+
+    </div>
+
+    <input type="submit" class="btn btn-success" value="submit">
+</form>
+
+{% endblock %}
+

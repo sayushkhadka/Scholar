@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Exam Detail ({{ exam_detail }})
+{% endblock%}
+
+{% block content%}
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+                <div class="page-header">
+                    <div class="page-block">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <div class="page-header-title">
+                                    <h5 class="m-b-10">Exam</h5>
+                                </div>
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'exam_material:exam-list' %}"><i
+                                                class="feather icon-home"></i>Exam List</a></li>
+                                    <!-- <li class="breadcrumb-item"><a href="#!">Tables</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:">Basic Tables</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ breadcrumb ] end -->
+                <!---->
+
+                <p>
+
+                <h5> Exam Detail ({{ exam_detail }})</h5>
+                <p>Title: {{ exam_detail }}</p>
+                <p>Subject: {{ exam_detail.subject }}</p>
+                <p>Class: {{ exam_detail.level}}</p>
+                <p>Section: {{ exam_detail.exam_section }}</p>
+                <p>Number of questions: {{ exam_detail.numberOfQuestions }}</p>
+                <p>Date Created: {{ exam_detail.date_created }}</p>
+                <p>Time: {{ exam_detail.time }}</p>
+                <p>Score to pass: {{ exam_detail.scoreToPass }}</p>
+
+                </p>
+
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+{% endblock%}

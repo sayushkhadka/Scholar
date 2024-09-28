@@ -1,0 +1,336 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Staff Page
+{% endblock %}
+
+{% block content %}
+<!-- [ Pre-loader ] start -->
+<!-- <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div> -->
+<!-- [ Pre-loader ] End -->
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar">
+    <div class="navbar-wrapper">
+        <div class="navbar-brand header-logo">
+            <a href="{% url 'main:index' %}" class="b-brand">
+                <!-- <div class="b-bg">
+                        <i class="feather icon-trending-up"></i>
+                    </div> -->
+                <span class="b-title">Scholar</span>
+            </a>
+
+        </div>
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <li class="nav-item pcoded-menu-caption">
+                    <label style="text-transform: none;">Username: {{ user.username }}</label>
+                </li>
+
+                <li data-username="Table bootstrap datatable footable" class="nav-item active">
+                    <a href="{% url 'main:staff-page' %}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-home"></i></span><span class="pcoded-mtext">Staff Main</span></a>
+                </li>
+
+                
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Authorities</label>
+                </li>
+                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds"
+                    class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-box"></i></span><span class="pcoded-mtext">Account
+                            Registration</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a href="{% url 'account:student-registration' %}" class="">Student</a></li>
+                        <li class=""><a href="{% url 'account:teacher-registration' %}" class="">Teacher</a></li>
+                        <li class=""><a href="{% url 'account:staff-registration' %}" class="">Staff</a></li>
+                    </ul>
+                </li>
+
+                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds"
+                    class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-box"></i></span><span class="pcoded-mtext">Account View</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a href="{% url 'main:student-list' %}" class="">Student</a></li>
+                        <li class=""><a href="{% url 'main:teacher-list' %}" class="">Teacher</a></li>
+                        <li class=""><a href="{% url 'main:staff-list' %}" class="">Staff</a></li>
+                    </ul>
+                </li>
+
+                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds"
+                    class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-box"></i></span><span class="pcoded-mtext">Exam Material</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a href="{% url 'exam_material:exam-registration-staff' %}" class="">Exam
+                                Registration</a></li>
+                        <li class=""><a href="{% url 'exam_material:exam-list' %}" class="">Exam List</a></li>
+                        
+                        <li class=""><a href="{% url 'exam_material:exam-result-list-staff' %}" class="">Exam Result
+                                List</a></li>
+
+                    </ul>
+                </li>
+
+                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds"
+                    class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-box"></i></span><span class="pcoded-mtext">Other
+                            Registration</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a href="{% url 'account:level-registration' %}" class="">Class</a></li>
+                        <li class=""><a href="{% url 'account:level-section-registration' %}" class="">Section</a></li>
+                        <li class=""><a href="{% url 'account:subject-registration' %}" class="">Subject</a></li>
+                        <li class=""><a href="{% url 'account:staff-position-registration' %}" class="">Staff
+                                Position</a></li>
+                    </ul>
+                </li>
+
+
+
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Notice Board</label>
+                </li>
+
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item"><a href="{% url 'main:staff-notice-board' %}" class="nav-link "><span
+                            class="pcoded-micon"><i class="feather icon-file-text"></i></span><span
+                            class="pcoded-mtext">Add Notice</span></a></li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item"><a href="{% url 'main:staff-notice-view' %}" class="nav-link "><span
+                            class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">View
+                            Notice</span></a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->
+
+<!-- [ Header ] start -->
+<header class="navbar pcoded-header navbar-expand-lg navbar-light">
+    <div class="m-header">
+        <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
+        <a href="{% url 'main:index' %}" class="b-brand">
+            <!-- <div class="b-bg">
+                       <i class="feather icon-trending-up"></i>
+                   </div> -->
+            <span class="b-title">Scholar</span>
+        </a>
+    </div>
+    <a class="mobile-menu" id="mobile-header" href="javascript:">
+        <i class="feather icon-more-horizontal"></i>
+    </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+
+            <li>
+                <div class="dropdown drp-user">
+                    <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon feather icon-settings"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-notification">
+                        <div class="pro-head">
+                            <!-- <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                            <span>{{user.username}}</span>
+                            <a href="{% url 'main:index' %}" class="dud-logout" title="Logout">
+                                <i class="feather icon-log-out"></i>
+                            </a>
+                        </div>
+                        <ul class="pro-body">
+                            
+                            <li><a href="{% url 'main:staff-update' user.pk %}" class="dropdown-item"><i class="feather icon-user"></i>
+                                    Change Profile Information</a></li>
+                            
+                            <li><a href="{% url 'password_change' %}" class="dropdown-item"><i
+                                        class="feather icon-lock"></i>Change Password</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+<!-- [ Header ] end -->
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ Main Content ] start -->
+                        <div class="row">
+
+                            <!--[ year  sales section ] starts-->
+                            <div class="col-md-12 col-xl-4">
+                                <div class="card yearly-sales">
+                                    <div class="card-block">
+                                        <h3 class="mb-4">Staff Portal</h3>
+                                        <h6 class="mb-4">You are using the official staff portal experience of Scholar
+                                            <b>{{ user.first_name}} {{ user.last_name}}</b>.
+                                        </h6>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ year  sales section ] end-->
+
+                            <!--[ year  sales section ] starts-->
+
+                            <!--[ year  sales section ] end-->
+
+
+
+                            <!--[ Recent Users ] start-->
+                            <div class="col-xl-8 col-md-6">
+                                <div class="card Recent-Users">
+                                    <div class="card-header">
+                                        <h3>Basic User Information</h3>
+                                    </div>
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    <tr class="unread">
+
+                                                        <td>
+                                                            <h6 class="mb-1">Username:</h6>
+
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-1">{{user.username}}</h6>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr class="unread">
+                                                        <td>
+                                                            <h6 class="mb-1">First Name:</h6>
+
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-1">{{ user.first_name }}</h6>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="unread">
+                                                        <td>
+                                                            <h6 class="mb-1">Last Name:</h6>
+
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-1">{{ user.last_name }}</h6>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="unread">
+                                                        <td>
+                                                            <h6 class="mb-1">Email:</h6>
+
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-1">{{ user.email }}</h6>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="unread">
+                                                        <td>
+                                                            <h6 class="mb-1">Role:</h6>
+
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-1">Staff</h6>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="unread">
+                                                        <td>
+                                                            <h6 class="mb-1">Position:</h6>
+
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-1">{{ user.staff.staff_position }}</h6>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ Recent Users ] end-->
+
+
+
+
+
+                        </div>
+                        <!-- [ Main Content ] end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+
+<!-- Warning Section Starts -->
+<!-- Older IE warning message -->
+<!--[if lt IE 11]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade
+               <br/>to any of the following web browsers to access this website.
+            </p>
+            <div class="iew-container">
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="assets/images/browser/chrome.png" alt="Chrome">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="assets/images/browser/firefox.png" alt="Firefox">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="assets/images/browser/opera.png" alt="Opera">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="assets/images/browser/safari.png" alt="Safari">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="assets/images/browser/ie.png" alt="">
+                            <div>IE (11 & above)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+    <![endif]-->
+<!-- Warning Section Ends -->
+
+<!-- Required Js -->
+{% endblock %}
